@@ -16,7 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".cv_input_window"></activity>
+        <activity android:name=".cv_input_window" />
+        <activity android:name=".swv_input_window" />
+        <activity android:name=".dpv_input_window" />
+        <activity android:name=".acv_input_window" />
+        <activity android:name=".chronoamperometry_input_window" />
+        <activity android:name=".pv_input_window"></activity>
     </application>
 
 </manifest>

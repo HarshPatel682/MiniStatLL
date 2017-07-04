@@ -30,6 +30,21 @@ public class MainActivity extends AppCompatActivity {
                     case ("Cyclic Voltammetry (CV)"):
                         openSelectedExperimentPage = new Intent(MainActivity.this, cv_input_window.class);
                         break;
+                    case ("Square Wave Voltammetry (SWV)"):
+                        openSelectedExperimentPage = new Intent(MainActivity.this, swv_input_window.class);
+                        break;
+                    case ("Differential Pulse Voltammetry (DPV)"):
+                        openSelectedExperimentPage = new Intent(MainActivity.this, dpv_input_window.class);
+                        break;
+                    case ("Alternating Current Voltammetry (ACV)"):
+                        openSelectedExperimentPage = new Intent(MainActivity.this, acv_input_window.class);
+                        break;
+                    case ("Chronoamperometry (Amp)"):
+                        openSelectedExperimentPage = new Intent(MainActivity.this, chronoamperometry_input_window.class);
+                        break;
+                    case ("Pulse Voltammetry (PV)"):
+                        openSelectedExperimentPage = new Intent(MainActivity.this, pv_input_window.class);
+                        break;
                 }
                 startActivity(openSelectedExperimentPage);
             }

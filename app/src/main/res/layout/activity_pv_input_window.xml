@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/pv_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Pulse Voltammetry (PV)"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.088" />
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.337"
+        android:id="@+id/tableLayout">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/pv_frequency_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="Frequency"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                tools:layout_editor_absoluteY="103dp" />
+
+            <EditText
+                android:id="@+id/pv_frequency_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/hz_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hz" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/pv_pulse_width_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="Pulse Width"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                tools:layout_editor_absoluteY="103dp" />
+
+            <EditText
+                android:id="@+id/pv_pulse_width_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/mew_s_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="μs" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/pv_pulse_amplitude_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="Pulse Amplitude"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                tools:layout_editor_absoluteY="103dp" />
+
+            <EditText
+                android:id="@+id/pv_pulse_amplitude_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/m_v_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="mV" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/pv_pulse_per_cycle_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="# of Pulses per cycle"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                tools:layout_editor_absoluteY="103dp" />
+
+            <EditText
+                android:id="@+id/pv_pulse_per_cycle_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:textSize="16sp" />
+        </TableRow>
+
+    </TableLayout>
+
+    <Button
+        android:id="@+id/pv_continue_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Start it up"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_bias="0.096"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+
+</android.support.constraint.ConstraintLayout>

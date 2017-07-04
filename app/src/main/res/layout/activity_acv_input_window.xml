@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/acv_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Alternating Current Voltammetry (ACV)"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.088" />
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.337"
+        android:id="@+id/tableLayout">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/acv_start_voltage_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="Start Voltage"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                tools:layout_editor_absoluteY="103dp" />
+
+            <EditText
+                android:id="@+id/acv_start_voltage_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/v_label1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="V" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/acv_end_voltage_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="End Voltage"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                tools:layout_editor_absoluteY="103dp" />
+
+            <EditText
+                android:id="@+id/acv_end_voltage_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/v_label2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="V" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/acv_amplitude_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="Amplitude"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                tools:layout_editor_absoluteY="103dp" />
+
+            <EditText
+                android:id="@+id/acv_pulse_amplitude_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/m_label1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="m" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/acv_pulse_frequency_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="Pulse Frequency"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                tools:layout_editor_absoluteY="103dp" />
+
+            <EditText
+                android:id="@+id/acv_pulse_frequency_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/hz_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hz" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/acv_scan_rate_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="Scan Rate"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                tools:layout_editor_absoluteY="103dp" />
+
+            <EditText
+                android:id="@+id/acv_scan_rate_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/mv_sec_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="mv/sec" />
+
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:id="@+id/acv_continue_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Start it up"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_bias="0.096"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+
+</android.support.constraint.ConstraintLayout>
