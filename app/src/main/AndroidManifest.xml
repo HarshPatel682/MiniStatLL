@@ -16,7 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".cv_input_wondow"></activity>
+        <activity android:name=".cv_input_window"></activity>
     </application>
 
 </manifest>
