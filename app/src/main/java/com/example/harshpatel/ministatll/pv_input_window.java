@@ -19,6 +19,13 @@ public class pv_input_window extends AppCompatActivity {
     public String pv_all_inputted_values_toast;
 
     public void init() {
+
+        pv_frequency_input = (EditText) findViewById(R.id.pv_frequency_input);
+        pv_pulse_width_input = (EditText) findViewById(R.id.pv_pulse_width_input);
+        pv_pulse_amplitude_input = (EditText) findViewById(R.id.pv_pulse_amplitude_input);
+        pv_pulse_per_cycle_input = (EditText) findViewById(R.id.pv_pulse_per_cycle_input);
+
+
         pv_continue_button = (Button) findViewById(R.id.pv_continue_button);
         pv_continue_button.setOnClickListener(new View.OnClickListener() {
             @Override
