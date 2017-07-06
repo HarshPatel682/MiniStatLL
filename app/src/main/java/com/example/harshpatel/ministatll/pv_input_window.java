@@ -30,9 +30,9 @@ public class pv_input_window extends AppCompatActivity {
         pv_continue_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              //  pv_all_inputted_values_toast = pv_frequency_input.getText().toString() + "," + pv_pulse_width_input.getText().toString() + "," +
-                //        pv_pulse_amplitude_input.getText().toString() + "," + pv_pulse_per_cycle_input.getText().toString();
-                Toast.makeText(getBaseContext(), "poopy", Toast.LENGTH_LONG).show();
+                pv_all_inputted_values_toast = pv_frequency_input.getText().toString() + "," + pv_pulse_width_input.getText().toString() + "," +
+                      pv_pulse_amplitude_input.getText().toString() + "," + pv_pulse_per_cycle_input.getText().toString();
+                Toast.makeText(getBaseContext(), pv_all_inputted_values_toast, Toast.LENGTH_LONG).show();
             }
         });
     }

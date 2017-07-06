@@ -107,7 +107,7 @@
                 tools:layout_editor_absoluteY="103dp" />
 
             <EditText
-                android:id="@+id/acv_pulse_amplitude_input"
+                android:id="@+id/acv_amplitude_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
