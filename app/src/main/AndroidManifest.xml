@@ -21,7 +21,8 @@
         <activity android:name=".dpv_input_window" />
         <activity android:name=".acv_input_window" />
         <activity android:name=".chronoamperometry_input_window" />
-        <activity android:name=".pv_input_window"></activity>
+        <activity android:name=".pv_input_window" />
+        <activity android:name=".graph_view_example"></activity>
     </application>
 
 </manifest>
