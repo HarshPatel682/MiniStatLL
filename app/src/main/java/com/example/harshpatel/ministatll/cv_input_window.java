@@ -1,5 +1,6 @@
 package com.example.harshpatel.ministatll;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -31,7 +32,9 @@ public class cv_input_window extends AppCompatActivity {
                 cv_all_inputted_values_toast = cv_start_voltage_input.getText().toString() + "," + cv_end_voltage_input.getText().toString()
                         + "," + cv_voltage_step_input.getText().toString() + "," +
                         cv_scan_rate_input.getText().toString();
-                Toast.makeText(getBaseContext(), cv_all_inputted_values_toast, Toast.LENGTH_LONG).show();
+                //Toast.makeText(getBaseContext(), cv_all_inputted_values_toast, Toast.LENGTH_LONG).show();
+                Intent goToGraphExample = new Intent(cv_input_window.this, graph_example.class);
+                startActivity(goToGraphExample);
             }
         });
     }
