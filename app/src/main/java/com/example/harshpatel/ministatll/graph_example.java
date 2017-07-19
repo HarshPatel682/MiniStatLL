@@ -10,7 +10,10 @@ import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 public class graph_example extends AppCompatActivity {
 
@@ -104,5 +107,67 @@ public class graph_example extends AppCompatActivity {
         yAxis.setGranularity(1f); // interval 1
         yAxis.setLabelCount(6, true); // force 6 labels
 
+        YAxis yAxis1 = mChart.getAxisRight();
+        yAxis1.setEnabled(false);
+
+    }
+
+    protected void onResume() {
+        super.onResume();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < 100; i++) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            addEntry();
+                        }
+                    });
+
+                    try {
+                        Thread.sleep(600);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+    }
+
+    private void addEntry() {
+        LineData data = mChart.getData();
+
+        if (data != null) {
+            LineDataSet set = (LineDataSet) data.getDataSetByIndex(0);
+            if (set == null) {
+                set = createSet();
+                data.addDataSet(set);
+            }
+
+            data.addEntry(new Entry((float) Math.random() + 50f , set.getEntryCount()), 0);
+            mChart.notifyDataSetChanged();
+            mChart.setVisibleXRange(0,6);
+            //mChart.moveViewToX(data.getDataSetCount() -7);
+        }
+    }
+
+    private LineDataSet createSet() {
+        LineDataSet set = new LineDataSet(null, "the line");
+        set.setDrawCircles(true);
+        set.setCubicIntensity(0.2f);
+        set.setAxisDependency(YAxis.AxisDependency.LEFT);
+        set.setColor(ColorTemplate.getHoloBlue());
+        set.setCircleColor(ColorTemplate.getHoloBlue());
+        set.setLineWidth(2f);
+        set.setCircleSize(4f);
+        set.setFillAlpha(65);
+        set.setFillColor(ColorTemplate.getHoloBlue());
+        set.setHighLightColor(Color.rgb(244, 117, 177));
+        set.setValueTextColor(Color.BLACK);
+        set.setValueTextSize(10f);
+
+        return set;
     }
 }
