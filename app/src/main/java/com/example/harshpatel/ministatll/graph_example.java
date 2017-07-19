@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.RelativeLayout;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -26,13 +27,18 @@ public class graph_example extends AppCompatActivity {
         * https://www.youtube.com/watch?v=a20EchSQgpw&index=5&t=908s&list=PLVDfjBEFgjhBCpeOW11AupWj0bYV1UWrt
         */
 
+
 //        mainLayout = (RelativeLayout) findViewById(R.id.LineChart);
-         mChart = new LineChart(this);
+         mChart = (LineChart) findViewById(R.id.Chart);
 //        mainLayout.addView(mChart);
 
+
+        /*
         //String emptyString = "";
         //mChart.setDescription(emptyString);
-
+        Description des = new Description();
+        des.setText("this is the description");
+        mChart.setDescription(des);
         mChart.setNoDataText("AAAHHHHHHHHHHHHHHHHHHHHHHHH");
         //enable touch gestures
         mChart.setTouchEnabled(true);
@@ -56,7 +62,7 @@ public class graph_example extends AppCompatActivity {
 
         XAxis xl = mChart.getXAxis();
         xl.setTextColor(Color.WHITE);
-        xl.setDrawGridLines(false);
+        xl.setDrawGridLines(true);
         xl.setAvoidFirstLastClipping(true);
 
         YAxis yl = mChart.getAxisLeft();
@@ -67,6 +73,36 @@ public class graph_example extends AppCompatActivity {
 
         YAxis yl2 = mChart.getAxisRight();
         yl2.setEnabled(false);
+        */
+        Description description = new Description();
+        description.setText("Here is the description text!!!");
+        mChart.setDescription(description);
+
+        mChart.setBackgroundColor(Color.LTGRAY);
+        mChart.setTouchEnabled(true);
+        mChart.setDragEnabled(true);
+        mChart.setScaleEnabled(true);
+        mChart.setDrawGridBackground(true);
+        mChart.setPinchZoom(true);
+
+        LineData data = new LineData();
+        data.setValueTextColor(Color.WHITE);
+        mChart.setData(data);
+
+        XAxis xAxis = mChart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setTextSize(10f);
+        xAxis.setTextColor(Color.RED);
+        xAxis.setDrawAxisLine(true);
+        xAxis.setDrawGridLines(false);
+
+        YAxis yAxis = mChart.getAxisLeft();
+        yAxis.setTextSize(12f); // set the text size
+        yAxis.setAxisMinimum(0f); // start at zero
+        yAxis.setAxisMaximum(100f); // the axis maximum is 100
+        yAxis.setTextColor(Color.BLACK);
+        yAxis.setGranularity(1f); // interval 1
+        yAxis.setLabelCount(6, true); // force 6 labels
 
     }
 }
