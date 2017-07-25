@@ -15,13 +15,24 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/stop_button"
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:text="STOP!!!" />
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/stop_button"
+                android:layout_width="179dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:text="STOP!!!" />
+
+            <Button
+                android:id="@+id/save_data_onto_file_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Save Data" />
+        </TableRow>
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/Chart"
