@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 public class swv_input_window extends AppCompatActivity {
 
+    /*Initializing all of the inputs that will be given by the user (buttons and edit texts)*/
     public Button swv_continue_button;
 
     public EditText swv_start_voltage_input;
@@ -20,6 +21,7 @@ public class swv_input_window extends AppCompatActivity {
 
     public String swv_all_inputted_values_toast;
 
+    //setting all of the inputs to their corresponding id (found in the xml file for each)
     public void init() {
         swv_start_voltage_input = (EditText) findViewById(R.id.swv_start_voltage_input);
         swv_end_voltage_input  = (EditText) findViewById(R.id.swv_end_voltage_input);
@@ -32,6 +34,7 @@ public class swv_input_window extends AppCompatActivity {
         swv_continue_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //this just appends all of the (edit text) inputs in to a string
                 swv_all_inputted_values_toast = swv_start_voltage_input.getText().toString() + "," +
                         swv_end_voltage_input.getText().toString() + "," +
                         swv_scan_rate_input.getText().toString() + "," +

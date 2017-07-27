@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 public class dpv_input_window extends AppCompatActivity {
 
+
+    /*Initializing all of the inputs that will be given by the user (buttons and edit texts)*/
     public Button dpv_continue_button;
 
     public EditText dpv_start_voltage_input;
@@ -20,6 +22,7 @@ public class dpv_input_window extends AppCompatActivity {
 
     public String dpv_all_inputted_values_toast;
 
+    //this sets each of the inputs to their corresponding id (found in its respective xml file)
     public void init() {
         dpv_start_voltage_input = (EditText) findViewById(R.id.dpv_start_voltage_input);
         dpv_end_voltage_input  = (EditText) findViewById(R.id.dpv_end_voltage_input);
@@ -32,6 +35,7 @@ public class dpv_input_window extends AppCompatActivity {
         dpv_continue_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //append all of the edit text inputs to a string to later show as a toast
                 dpv_all_inputted_values_toast = dpv_start_voltage_input.getText().toString() + "," +
                         dpv_end_voltage_input.getText().toString() + "," +
                         dpv_scan_rate_input.getText().toString() + "," +

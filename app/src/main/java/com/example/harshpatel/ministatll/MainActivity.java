@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         */
         selectedExperimentButton.setOnClickListener(new View.OnClickListener() {
             Intent openSelectedExperimentPage;
+            //when the button is clicked it will see what experiment name is stored in "selectedExperiment"
             @Override
             public void onClick(View v) {
                 switch ((String)selectedExperiment.getText()) {
@@ -85,12 +86,12 @@ public class MainActivity extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedExperiment = (TextView) view;
+                selectedExperiment = (TextView) view; //set the value received from the spinner(drop down)
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                //does not have a null/nothing option on the drop down
             }
         });
     }
