@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
@@ -18,6 +19,7 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.io.File;
@@ -117,7 +119,7 @@ public class graph_example extends AppCompatActivity {
 
         //get the current time and date
         calendar = Calendar.getInstance();
-        simpleDateFormat = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
+        simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         date = simpleDateFormat.format(calendar.getTime());
 
         stop_button.setOnClickListener(new View.OnClickListener() {
@@ -159,6 +161,7 @@ public class graph_example extends AppCompatActivity {
         xAxis.setTextColor(Color.RED);
         xAxis.setDrawAxisLine(true);
         xAxis.setDrawGridLines(false);
+
 
         YAxis yAxis = mChart.getAxisLeft();
         yAxis.setTextSize(12f); // set the text size
@@ -229,12 +232,12 @@ public class graph_example extends AppCompatActivity {
 
             //fake x and y values
             x += Math.PI/16;
-            y = Math.abs(Math.tan(x))*20;
+//            y = Math.abs(Math.tan(x))*20;
+            y = Math.abs(Math.sin(x))*100;
 
             if(y > 100) {
                 y = 100;
             }
-//            y = Math.abs(Math.sin(x))*100;
             data.addEntry(new Entry((float)x , (float)y), 0);
 
             //Putting the values into the arraylist for X and Y values

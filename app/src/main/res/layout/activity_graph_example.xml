@@ -13,7 +13,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:weightSum="1"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="89dp">
 
         <TableRow
             android:layout_width="match_parent"
@@ -37,8 +40,48 @@
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/Chart"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></com.github.mikephil.charting.charts.LineChart>
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="23dp"
+            tools:layout_editor_absoluteY="-26dp"></com.github.mikephil.charting.charts.LineChart>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/x_axis_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="-40dp"
+                android:text="X - Axis"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+        </TableRow>
 
     </LinearLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/y_axis_label"
+            android:layout_width="9dp"
+            android:layout_height="98dp"
+            android:layout_marginLeft="6dp"
+            android:text="Y Axis"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="6dp" />
+
+    </android.support.constraint.ConstraintLayout>
 
 </RelativeLayout>
