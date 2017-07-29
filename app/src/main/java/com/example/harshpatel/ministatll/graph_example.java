@@ -42,6 +42,7 @@ public class graph_example extends AppCompatActivity {
 
     static ArrayList<Double> xValues;
     static ArrayList<Double> yValues;
+    
 
     private LineChart mChart;
     double x = 0;
