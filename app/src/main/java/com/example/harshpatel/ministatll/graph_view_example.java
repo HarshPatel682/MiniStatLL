@@ -5,6 +5,8 @@ import android.graphics.Interpolator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.Viewport;
@@ -48,6 +50,8 @@ public class graph_view_example extends AppCompatActivity {
     int currentPosition;
     PointsGraphSeries<DataPoint> dataSeries;
     GraphView scatterPlot;
+    Button add_points_button;
+
 
     private ArrayList<XYValue> valueArray;
 
@@ -59,10 +63,11 @@ public class graph_view_example extends AppCompatActivity {
         scatterPlot = (GraphView) findViewById(R.id.scatterPlot);
         dataSeries = new PointsGraphSeries<>();
         valueArray = new ArrayList<>();
+        add_points_button = (Button) findViewById(R.id.add_points_button);
 
         dataSeries.setShape(PointsGraphSeries.Shape.POINT);
         dataSeries.setColor(Color.BLUE);
-        dataSeries.setSize(5f);
+        dataSeries.setSize(10f);
 
         scatterPlot.getViewport().setScalable(true);
         scatterPlot.getViewport().setScalableY(true);
@@ -77,44 +82,17 @@ public class graph_view_example extends AppCompatActivity {
         scatterPlot.getViewport().setMaxX(1000);
         scatterPlot.getViewport().setMinX(-1000);
 
+        add_points_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addEntry();
+                createScatterPlot();
+            }
+        });
 
-        for (int i = 0; i < ys.length; i++) {
-            addEntry();
-        }
-
-        createScatterPlot();
     }
 
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//
-//
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                while(currentPosition < 101) {
-//                    runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            addEntry();
-//                            //createScatterPlot();
-//
-//                        }
-//                    });
-//
-//                    try {
-//                        Thread.sleep(500);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-////                    createScatterPlot();
-//                }
-//
-//
-//            }
-//        }).start();
-//    }
+
 
     private void addEntry() {
         valueArray.add(new XYValue(xs[currentPosition], ys[currentPosition]));
@@ -144,6 +122,7 @@ public class graph_view_example extends AppCompatActivity {
         }
 
         //Log.e(TAG, "appending data");
+        scatterPlot.removeAllSeries();
         scatterPlot.addSeries(dataSeries);
     }
 
