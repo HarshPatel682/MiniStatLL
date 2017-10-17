@@ -51,7 +51,7 @@ public class graph_view_example extends AppCompatActivity {
     PointsGraphSeries<DataPoint> dataSeries;
     GraphView scatterPlot;
     Button add_points_button;
-
+    boolean end_of_list;
 
     private ArrayList<XYValue> valueArray;
 
@@ -61,9 +61,70 @@ public class graph_view_example extends AppCompatActivity {
         setContentView(R.layout.activity_graph_view_example);
 
         scatterPlot = (GraphView) findViewById(R.id.scatterPlot);
-        dataSeries = new PointsGraphSeries<>();
+//        dataSeries = new PointsGraphSeries<>();
         valueArray = new ArrayList<>();
         add_points_button = (Button) findViewById(R.id.add_points_button);
+        end_of_list = false;
+        init();
+
+
+    }
+
+    private void init(){
+        dataSeries = new PointsGraphSeries<>();
+
+        if (currentPosition >= xs.length) {
+            end_of_list = true;
+        }
+        add_points_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!end_of_list){
+                    addEntry();
+                    init();
+                }
+
+            }
+        });
+
+        if (valueArray.size() != 0) {
+            createScatterPlot();
+        }
+    }
+
+    private void addEntry() {
+
+        valueArray.add(new XYValue(xs[currentPosition], ys[currentPosition]));
+        Log.e(TAG, "adding " + xs[currentPosition] + " " + ys[currentPosition] + " position " + currentPosition);
+        valueArray = sortArray(valueArray);
+
+        currentPosition++;
+
+        if (currentPosition >= xs.length) {
+            end_of_list = true;
+        }
+//        if(valueArray.size() != 0) {
+//            createScatterPlot();
+//        } else {
+//
+//        }
+    }
+
+    private void createScatterPlot() {
+//        valueArray = sortArray(valueArray);
+//        valueArray.sort(ArrayList<XYValue> valueArray);
+
+        for (int i = 0; i < valueArray.size(); i++) {
+            try {
+                double x = valueArray.get(i).getX();
+                double y = valueArray.get(i).getY();
+                //Log.e(TAG, "adding " + x + " " + y + ".");
+                dataSeries.appendData(new DataPoint(x,y), true, 10000);
+            } catch (IllegalArgumentException e) {
+
+            }
+        }
+
 
         dataSeries.setShape(PointsGraphSeries.Shape.POINT);
         dataSeries.setColor(Color.BLUE);
@@ -81,47 +142,8 @@ public class graph_view_example extends AppCompatActivity {
         scatterPlot.getViewport().setXAxisBoundsManual(true);
         scatterPlot.getViewport().setMaxX(1000);
         scatterPlot.getViewport().setMinX(-1000);
-
-        add_points_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addEntry();
-                createScatterPlot();
-            }
-        });
-
-    }
-
-
-
-    private void addEntry() {
-        valueArray.add(new XYValue(xs[currentPosition], ys[currentPosition]));
-        Log.e(TAG, "adding " + xs[currentPosition] + " " + ys[currentPosition] + " position " + currentPosition);
-
-        currentPosition++;
-
-//        if(valueArray.size() != 0) {
-//            createScatterPlot();
-//        } else {
-//
-//        }
-    }
-
-    private void createScatterPlot() {
-        valueArray = sortArray(valueArray);
-
-        for (int i = 0; i < valueArray.size(); i++) {
-            try {
-                double x = valueArray.get(i).getX();
-                double y = valueArray.get(i).getY();
-                //Log.e(TAG, "adding " + x + " " + y + ".");
-                dataSeries.appendData(new DataPoint(x,y), true, 100);
-            } catch (IllegalArgumentException e) {
-
-            }
-        }
-
         //Log.e(TAG, "appending data");
+
         scatterPlot.removeAllSeries();
         scatterPlot.addSeries(dataSeries);
     }
