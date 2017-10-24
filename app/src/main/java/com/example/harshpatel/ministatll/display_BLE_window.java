@@ -107,7 +107,7 @@ public class display_BLE_window extends AppCompatActivity implements View.OnClic
     }
 
     /**
-     * Called when an item in the ListView is clicked.
+     * Called when an item in the ListView is clicked
      */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
