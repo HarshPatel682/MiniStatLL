@@ -43,8 +43,12 @@
         <activity
             android:name=".graph_example"
             android:screenOrientation="portrait" />
-        <activity android:name=".graph_view_example" />
-        <activity android:name=".display_BLE_window"></activity>
+        <activity
+            android:name=".graph_view_example"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".display_BLE_window"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

@@ -71,25 +71,25 @@ public class graph_view_example extends AppCompatActivity {
     }
 
     private void init(){
-        if (currentPosition >= xs.length) {
+        if (currentPosition-1 >= xs.length) {
             end_of_list = true;
         }
 
         dataSeries = new PointsGraphSeries<>();
 
-        if (currentPosition-1 >= xs.length) {
-            end_of_list = true;
-        }
-        add_points_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!end_of_list){
-                    addEntry();
-                    init();
-                }
+        if (!end_of_list) {
+            add_points_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (!end_of_list){
+                        addEntry();
+                        init();
+                    }
 
-            }
-        });
+                }
+            });
+        }
+
         if (!end_of_list) {
             if (valueArray.size() != 0) {
                 createScatterPlot();

@@ -1,6 +1,7 @@
 package com.example.harshpatel.ministatll;
 
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -94,5 +95,11 @@ public class MainActivity extends AppCompatActivity {
                 //does not have a null/nothing option on the drop down
             }
         });
+    }
+
+    public void addDevice(BluetoothDevice device, int new_rssi) {
+    }
+
+    public void stopScan() {
     }
 }
