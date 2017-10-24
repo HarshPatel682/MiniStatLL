@@ -10,4 +10,11 @@
         <item>Chronoamperometry (Amp)</item>
         <item>Pulse Voltammetry (PV)</item>
     </string-array>
+
+    <string name="Scanning_3xDot">Scanning...</string>
+    <string name="Scan_again">Scan Again</string>
+    <string name="no_name">No Name</string>
+    <string name="no_address">No Address</string>
+
+
 </resources>

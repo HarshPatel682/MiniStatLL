@@ -10,7 +10,7 @@ import android.support.annotation.RequiresApi;
 
 public class Scanner_BTLE {
 
-    private MainActivity ma;
+    private display_BLE_window ma;
 
     private BluetoothAdapter mBluetoothAdapter;
     private boolean mScanning;
@@ -20,8 +20,8 @@ public class Scanner_BTLE {
     private int signalStrength;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
-    public Scanner_BTLE(MainActivity mainActivity, long scanPeriod, int signalStrength) {
-        ma = mainActivity;
+    public Scanner_BTLE(display_BLE_window display_ble_window, long scanPeriod, int signalStrength) {
+        ma = display_ble_window;
         handler = new Handler();
         this.scanPeriod = scanPeriod;
         this.signalStrength = signalStrength;

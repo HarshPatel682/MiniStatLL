@@ -97,9 +97,4 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void addDevice(BluetoothDevice device, int new_rssi) {
-    }
-
-    public void stopScan() {
-    }
 }

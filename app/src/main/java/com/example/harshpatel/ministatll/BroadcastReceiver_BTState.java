@@ -1,7 +1,4 @@
 package com.example.harshpatel.ministatll;
-/**
- * Created by Harsh Patel on 10/24/2017.
- */
 
 import android.bluetooth.BluetoothAdapter;
 import android.content.BroadcastReceiver;
