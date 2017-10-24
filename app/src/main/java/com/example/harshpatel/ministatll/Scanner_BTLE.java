@@ -65,7 +65,6 @@ public class Scanner_BTLE {
 
             mScanning  = true;
             mBluetoothAdapter.startLeScan(mLeScanCallback);
-
         }
     }
 
