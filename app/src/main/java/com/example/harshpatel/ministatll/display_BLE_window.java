@@ -42,6 +42,7 @@ public class display_BLE_window extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display__ble_window);
 
+
         if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
             My_Utils.toast(getApplicationContext(), "BLE not supported");
             finish();
@@ -118,6 +119,7 @@ public class display_BLE_window extends AppCompatActivity implements View.OnClic
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         // Used in future BLE tutorials
+        My_Utils.toast(getApplicationContext(), "testing the click listener");
     }
 
 
@@ -153,19 +155,24 @@ public class display_BLE_window extends AppCompatActivity implements View.OnClic
 
             mBTDevicesHashMap.put(address, btle_device);
             mBTDevicesArrayList.add(btle_device);
+            
         } else {
             mBTDevicesHashMap.get(address).setRSSI(new_rssi);
         }
         adapter.notifyDataSetChanged();
+
     }
 
     public void startScan() {
         btn_Scan.setText(R.string.Scanning_3xDot);
         mBTDevicesArrayList.clear();
         mBTDevicesHashMap.clear();
+
         adapter.notifyDataSetChanged();
 
         mBTLeScanner.start();
+        adapter.notifyDataSetChanged();
+
     }
 
     public void stopScan() {

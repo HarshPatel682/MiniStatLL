@@ -36,7 +36,7 @@ public class Scanner_BTLE {
     public void start() {
         if (!My_Utils.checkBluetooth(mBluetoothAdapter)) {
             My_Utils.requestUserBluetooth(ma);
-            //ma.stopScan();
+            ma.stopScan();
         } else {
             scanLeDevice(true);
         }
