@@ -71,9 +71,13 @@ public class graph_view_example extends AppCompatActivity {
     }
 
     private void init(){
+        if (currentPosition >= xs.length) {
+            end_of_list = true;
+        }
+
         dataSeries = new PointsGraphSeries<>();
 
-        if (currentPosition >= xs.length) {
+        if (currentPosition-1 >= xs.length) {
             end_of_list = true;
         }
         add_points_button.setOnClickListener(new View.OnClickListener() {
@@ -86,23 +90,28 @@ public class graph_view_example extends AppCompatActivity {
 
             }
         });
-
-        if (valueArray.size() != 0) {
-            createScatterPlot();
+        if (!end_of_list) {
+            if (valueArray.size() != 0) {
+                createScatterPlot();
+            }
         }
     }
 
     private void addEntry() {
 
-        valueArray.add(new XYValue(xs[currentPosition], ys[currentPosition]));
-        Log.e(TAG, "adding " + xs[currentPosition] + " " + ys[currentPosition] + " position " + currentPosition);
-        valueArray = sortArray(valueArray);
-
-        currentPosition++;
-
-        if (currentPosition >= xs.length) {
+        if (currentPosition-1 >= xs.length) {
             end_of_list = true;
         }
+
+        if (!end_of_list) {
+            valueArray.add(new XYValue(xs[currentPosition], ys[currentPosition]));
+            Log.e(TAG, "adding " + xs[currentPosition] + " " + ys[currentPosition] + " position " + currentPosition);
+            valueArray = sortArray(valueArray);
+
+            currentPosition++;
+        }
+
+
 //        if(valueArray.size() != 0) {
 //            createScatterPlot();
 //        } else {
@@ -128,7 +137,7 @@ public class graph_view_example extends AppCompatActivity {
 
         dataSeries.setShape(PointsGraphSeries.Shape.POINT);
         dataSeries.setColor(Color.BLUE);
-        dataSeries.setSize(10f);
+        dataSeries.setSize(5f);
 
         scatterPlot.getViewport().setScalable(true);
         scatterPlot.getViewport().setScalableY(true);
