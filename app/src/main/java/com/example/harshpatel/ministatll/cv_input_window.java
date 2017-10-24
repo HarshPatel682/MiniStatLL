@@ -39,9 +39,12 @@ public class cv_input_window extends AppCompatActivity {
                 //Toast.makeText(getBaseContext(), cv_all_inputted_values_toast, Toast.LENGTH_LONG).show();
 
                 /*Just to test if the graph works...this starts the "graph_example" when the button is clicked*/
-                Intent goToGraphExample = new Intent(cv_input_window.this, graph_view_example.class);
-                startActivity(goToGraphExample);
 
+                /*Intent goToGraphExample = new Intent(cv_input_window.this, graph_view_example.class);
+                startActivity(goToGraphExample);*/
+
+                Intent goToBLeExample = new Intent(cv_input_window.this, display_BLE_window.class);
+                startActivity(goToBLeExample);
             }
         });
     }

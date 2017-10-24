@@ -2,7 +2,7 @@ package com.example.harshpatel.ministatll;
 
 import android.bluetooth.BluetoothDevice;
 
-class BTLE_Device {
+public class BTLE_Device {
 
     private BluetoothDevice bluetoothDevice;
     private int rssi;
