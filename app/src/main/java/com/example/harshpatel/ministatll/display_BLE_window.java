@@ -119,8 +119,8 @@ public class display_BLE_window extends AppCompatActivity implements View.OnClic
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         // Used in future BLE tutorials
-        //see what everything returns on this,
 
+        //see what everything returns
         My_Utils.toast(getApplicationContext(), "clicked on " + mBTDevicesArrayList.get(position) + "at position" + position);
 //        Intent goToGraphViewExample = new Intent(display_BLE_window.this, graph_view_example.class);
 //        startActivity(goToGraphViewExample);
