@@ -15,11 +15,25 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/add_points_button"
+
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Add Points" />
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/add_points_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Points" />
+
+            <Button
+                android:id="@+id/save_data_onto_file_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Save Data"
+                android:onClick="save_csv_and_send"/>
+        </TableRow>
+
 
         <com.jjoe64.graphview.GraphView
             android:id="@+id/scatterPlot"

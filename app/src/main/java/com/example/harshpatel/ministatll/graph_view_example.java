@@ -1,12 +1,15 @@
 package com.example.harshpatel.ministatll;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Interpolator;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.Viewport;
@@ -14,10 +17,21 @@ import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.jjoe64.graphview.series.PointsGraphSeries;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class graph_view_example extends AppCompatActivity {
+
+    //this gets the date and time, because you wanna remember when you did the experiment
+    Calendar calendar;
+    SimpleDateFormat simpleDateFormat;
+    String date;
 
     private static final String TAG = "graph_view_example";
 
@@ -47,6 +61,10 @@ public class graph_view_example extends AppCompatActivity {
             3762 ,3045, 2567 ,2328 ,2209 ,2090 ,2090 ,1851 ,1373 ,-656 ,
             -5434 ,-9495, -8539 ,-7464};
 
+
+    static ArrayList<Double> target_x;
+    static ArrayList<Double> target_y;
+
     int currentPosition;
     PointsGraphSeries<DataPoint> dataSeries;
     GraphView scatterPlot;
@@ -60,10 +78,14 @@ public class graph_view_example extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph_view_example);
 
+        target_y = new ArrayList<Double>();
+        target_x = new ArrayList<Double>();
+
         scatterPlot = (GraphView) findViewById(R.id.scatterPlot);
 //        dataSeries = new PointsGraphSeries<>();
         valueArray = new ArrayList<>();
         add_points_button = (Button) findViewById(R.id.add_points_button);
+        add_points_button.setEnabled(true);
         end_of_list = false;
         init();
 
@@ -71,14 +93,18 @@ public class graph_view_example extends AppCompatActivity {
     }
 
     private void init(){
-        if (currentPosition-1 >= xs.length) {
-            end_of_list = true;
-        }
+//        if (currentPosition-1 >= xs.length) {
+//            end_of_list = true;
+//        }
 
         dataSeries = new PointsGraphSeries<>();
 
-        if (!end_of_list) {
-            add_points_button.setOnClickListener(new View.OnClickListener() {
+        if (end_of_list) {
+            add_points_button.setEnabled(false);
+            Toast.makeText(getBaseContext(), "There are no more values to add...", Toast.LENGTH_LONG).show();
+        }
+
+        add_points_button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (!end_of_list){
@@ -87,14 +113,13 @@ public class graph_view_example extends AppCompatActivity {
                     }
 
                 }
-            });
+        });
+
+
+        if (valueArray.size() != 0) {
+            createScatterPlot();
         }
 
-        if (!end_of_list) {
-            if (valueArray.size() != 0) {
-                createScatterPlot();
-            }
-        }
     }
 
     private void addEntry() {
@@ -103,11 +128,19 @@ public class graph_view_example extends AppCompatActivity {
             end_of_list = true;
         }
 
+/*        if (end_of_list) {
+            add_points_button.setEnabled(false);
+            Toast.makeText(getBaseContext(), "There are no more values to add...", Toast.LENGTH_LONG).show();
+        }*/
+
         if (!end_of_list) {
             valueArray.add(new XYValue(xs[currentPosition], ys[currentPosition]));
             Log.e(TAG, "adding " + xs[currentPosition] + " " + ys[currentPosition] + " position " + currentPosition);
             valueArray = sortArray(valueArray);
 
+
+            target_x.add(xs[currentPosition]);
+            target_y.add(ys[currentPosition]);
             currentPosition++;
         }
 
@@ -194,5 +227,41 @@ public class graph_view_example extends AppCompatActivity {
             }
         }
         return array;
+    }
+
+    public void save_csv_and_send(View view) {
+        calendar = Calendar.getInstance();
+        simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        date = simpleDateFormat.format(calendar.getTime());
+
+        String data ="" + date + "\n";
+        for (int i = 0; i < target_y.size(); i++) {
+            data += target_x.get(i) + ',' + target_y.get(i) + "\n";
+        }
+
+        String file_name = "experiment.csv";
+        try {
+            FileOutputStream fileOutputStream = openFileOutput(file_name, MODE_PRIVATE);
+            fileOutputStream.write(data.getBytes());
+            fileOutputStream.close();
+            Toast.makeText(getBaseContext(), "Values are saved into experiment.csv", Toast.LENGTH_LONG).show();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+        emailIntent.setType("*/*");
+        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {"sample_email@gmail.com"});
+        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,
+                "Experiment Performed");
+        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT,
+                "go on read the emails");
+
+        Uri uri = Uri.fromFile(new File(file_name));
+        emailIntent.putExtra(Intent.EXTRA_STREAM, uri);
+        startActivity(Intent.createChooser(emailIntent, "Send mail..."));
     }
 }

@@ -105,7 +105,7 @@ public class display_BLE_window extends AppCompatActivity implements View.OnClic
         if (requestCode == REQUEST_ENABLE_BT) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
-                // My_Utils.toast(getApplicationContext(), "Thank you for turning on Bluetooth");
+                My_Utils.toast(getApplicationContext(), "Thank you for turning on Bluetooth");
             }
             else if (resultCode == RESULT_CANCELED) {
                 My_Utils.toast(getApplicationContext(), "Please turn on Bluetooth");
@@ -121,11 +121,12 @@ public class display_BLE_window extends AppCompatActivity implements View.OnClic
         // Used in future BLE tutorials
 
         //see what everything returns
-        My_Utils.toast(getApplicationContext(), "clicked on " + mBTDevicesArrayList.get(position) + "at position" + position);
-//        Intent goToGraphViewExample = new Intent(display_BLE_window.this, graph_view_example.class);
-//        startActivity(goToGraphViewExample);
-    }
+//        My_Utils.toast(getApplicationContext(), "clicked on " + mBTDevicesArrayList.get(position) + "at position" + position);
 
+
+        Intent goToGraphViewExample = new Intent(display_BLE_window.this, graph_view_example.class);
+        startActivity(goToGraphViewExample);
+    }
 
     /**
      * Called when the scan button is clicked.
