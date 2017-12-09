@@ -22,13 +22,17 @@
 
             <Button
                 android:id="@+id/add_points_button"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+
                 android:layout_height="wrap_content"
                 android:text="Add Points" />
 
             <Button
                 android:id="@+id/save_data_onto_file_button"
                 android:layout_width="match_parent"
+                android:layout_weight="1"
+
                 android:layout_height="wrap_content"
                 android:text="Save Data"
                 android:onClick="save_csv_and_send"/>

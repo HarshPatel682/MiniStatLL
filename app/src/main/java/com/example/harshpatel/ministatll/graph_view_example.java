@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Interpolator;
 import android.net.Uri;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +19,7 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 import com.jjoe64.graphview.series.PointsGraphSeries;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -25,6 +27,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import static android.R.id.message;
 
 public class graph_view_example extends AppCompatActivity {
 
@@ -93,9 +97,9 @@ public class graph_view_example extends AppCompatActivity {
     }
 
     private void init(){
-//        if (currentPosition-1 >= xs.length) {
-//            end_of_list = true;
-//        }
+        if (currentPosition-2 >= xs.length) {
+            end_of_list = true;
+        }
 
         dataSeries = new PointsGraphSeries<>();
 
@@ -108,7 +112,15 @@ public class graph_view_example extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     if (!end_of_list){
+                        if (end_of_list) {
+                            add_points_button.setEnabled(false);
+                            Toast.makeText(getBaseContext(), "There are no more values to add...", Toast.LENGTH_LONG).show();
+                        }
                         addEntry();
+                        if (end_of_list) {
+                            add_points_button.setEnabled(false);
+                            Toast.makeText(getBaseContext(), "There are no more values to add...", Toast.LENGTH_LONG).show();
+                        }
                         init();
                     }
 
@@ -124,10 +136,14 @@ public class graph_view_example extends AppCompatActivity {
 
     private void addEntry() {
 
-        if (currentPosition-1 >= xs.length) {
+        if (currentPosition-2 >= xs.length) {
             end_of_list = true;
         }
 
+        if (end_of_list) {
+            add_points_button.setEnabled(false);
+            Toast.makeText(getBaseContext(), "There are no more values to add...", Toast.LENGTH_LONG).show();
+        }
 /*        if (end_of_list) {
             add_points_button.setEnabled(false);
             Toast.makeText(getBaseContext(), "There are no more values to add...", Toast.LENGTH_LONG).show();
@@ -235,33 +251,87 @@ public class graph_view_example extends AppCompatActivity {
         date = simpleDateFormat.format(calendar.getTime());
 
         String data ="" + date + "\n";
-        for (int i = 0; i < target_y.size(); i++) {
-            data += target_x.get(i) + ',' + target_y.get(i) + "\n";
+        for (int i = 0; i < target_x.size(); i++) {
+            data += "" + target_x.get(i) + ',' + target_y.get(i) + "\n";
         }
 
-        String file_name = "experiment.csv";
-        try {
-            FileOutputStream fileOutputStream = openFileOutput(file_name, MODE_PRIVATE);
-            fileOutputStream.write(data.getBytes());
-            fileOutputStream.close();
-            Toast.makeText(getBaseContext(), "Values are saved into experiment.csv", Toast.LENGTH_LONG).show();
+//        String file_name = "experiment.csv";
+//        try {
+//            FileOutputStream fileOutputStream = openFileOutput(file_name, MODE_PRIVATE);
+//            fileOutputStream.write(data.getBytes());
+//            fileOutputStream.close();
+//            Toast.makeText(getBaseContext(), "Values are saved into experiment.csv", Toast.LENGTH_LONG).show();
+//
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+//        emailIntent.setType("*/*");
+//        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {"sample_email@gmail.com"});
+//        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,
+//                "Experiment Performed");
+//        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT,
+//                "go on read the emails");
+//
+//        Uri uri = Uri.fromFile(new File(file_name));
+//        emailIntent.putExtra(Intent.EXTRA_STREAM, uri);
+//        startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+        String FILENAME = "experiment.csv"; //it can be changed to .csv after
+        String state;
+        state = Environment.getExternalStorageState();
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            File root = Environment.getExternalStorageDirectory();
+            File dir = new File(root.getAbsolutePath()+"/MiniStatLL-App/");
+            if(!dir.exists()){
+                dir.mkdir();
+            }
+            File file = new File(dir, FILENAME);
+            try {
+                FileOutputStream out = new FileOutputStream(file);
+                out.write(data.getBytes());
+                out.close();
+                Toast.makeText(getApplicationContext(), "Content saved!! File name is " + FILENAME, Toast.LENGTH_LONG).show();
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "SD card not found", Toast.LENGTH_LONG).show();
         }
 
-        Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
-        emailIntent.setType("*/*");
-        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {"sample_email@gmail.com"});
-        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,
-                "Experiment Performed");
-        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT,
-                "go on read the emails");
+//        Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+//        emailIntent.setType("*/*");
+//
+////        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {"m"});
+//        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,
+//                "Experiment Performed");
+//        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT,
+//                "go on read the emails");
+//
+//        File file2 = new File(Environment.getExternalStorageState()+"/MiniStatLL-App/" + FILENAME);
+//        Uri uri = Uri.fromFile(file2);
+//        emailIntent.putExtra(Intent.EXTRA_STREAM, uri);
+//        startActivity(Intent.createChooser(emailIntent, "Send mail..."));
 
-        Uri uri = Uri.fromFile(new File(file_name));
-        emailIntent.putExtra(Intent.EXTRA_STREAM, uri);
-        startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+        File Root= Environment.getExternalStorageDirectory();
+        String filelocation=Root.getAbsolutePath() + "/MiniStatLL-App/" + FILENAME;
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setType("*/*");
+        String message="File to be shared is " + FILENAME + ".";
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
+        intent.putExtra(Intent.EXTRA_STREAM, Uri.parse( "file://"+filelocation));
+        intent.putExtra(Intent.EXTRA_TEXT, message);
+        intent.setData(Uri.parse("mailto:xyz@gmail.com"));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        startActivity(intent);
     }
+
+
 }
